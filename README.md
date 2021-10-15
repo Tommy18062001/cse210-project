@@ -1,5 +1,5 @@
-# Final Project
-Description
+## Final Project
+This is our simple version of the classic Asteroid game. The original game was made by Atari, Inc. an American video game developer and home computer company founded in 1972 by Nolan Bushnell and Ted Dabney. Atari was responsible for the formation of the video arcade and modern video game industry.
 
 ## Getting Started
 ---
@@ -16,6 +16,9 @@ python3 final project
 You can also run the program from an IDE like Visual Studio Code. Start your IDE 
 and open the project folder. Select the main module inside the hunter folder and 
 click the "run" icon.
+
+Control the spaceship to destroy asteroids
+Tip: You can use the onscreen or keyboard arrows to control the spaceship.
 
 ## Project Structure
 ---
