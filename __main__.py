@@ -1,6 +1,7 @@
+import arcade
 from game.director import Director
+from game import constants
 
-# create an instance of the game
-our_game = Director()
-
-our_game.start_game()
+# Creates the game and starts it going
+window = Director(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
+arcade.run()
