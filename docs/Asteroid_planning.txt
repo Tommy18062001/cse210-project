@@ -1,8 +1,85 @@
 
 				Asteroids Documentation
 
+Final Project Planning – Team 8
 
-*What program are we going to create? Use your brainstorming from the solo checkpoint to answer this question together.-A simplified version of the Asteroid game, A ship will be shooting asteroids and gets point for the asteroids destroyed.*What technologies will we use? The answer to this question is mostly already decided. Just take a minute to remind yourselves of the language, libraries and anything else you plan on using.-python-arcade Library-arcade Sounds(Comes with arcade package)-arcade sprites(Comes with arcade package)*What features will we include? The goal of asking this question is to identify what will and what won't be included. Use this simple feature planning guide to help you.-A ship in space shooting asteroids-Different colour and size asteroids-A bullet in laser form-A pretty library to display the game over and score-The score from shooting asteroids-Game sounds from the arcade library-Button use, on click enter, the game restarts*What is your timeline? The answer to this question is mostly already decided. Just take a minute to review the rest of the course schedule together.-Alpha Release = 17 October-Beta Release = 20 October -Release Candidate = 23 October -Stable Release = 26 October
+1.	What program are we going to create? Use your brainstorming from the solo checkpoint to answer this question together.
+We are going to make an asteroid game for our final project. After checking and thinking about this, 
+we decided to do this because we think it will make a good fit and will help us meet the requirements. 
+A simplified version of the Asteroid game, A ship will be shooting asteroids and gets point for the asteroids destroyed.
+
+2.	What technologies will we use? The answer to this question is mostly already decided. Just take a minute to remind yourselves of the language, libraries and anything else you plan on using.
+For the project, we will use Python. 
+As required, we will also install and use:
+-arcade Library
+-arcade Sounds(Comes with arcade package)
+-arcade sprites(Comes with arcade package) 
+
+3.	What features will we include? The goal of asking this question is to identify what will and what won't be included. Use this simple feature planning guide to help you.
+
+Main Scene: 
+-	Open the window and run the game
+
+Game Scene:
+-	Score display
+-	Sounds effects
+-	Check collisions
+-	Check user inputs
+-	Outputs display
+
+Death Scene:
+-	Display the game over message
+-	Allow the user to restart the game
+
+Win Scene:
+-       There is no limit score, the user can play until the game is over
+
+Additional Scene:
+-       A ship in space shooting asteroids
+-       Different colour and size asteroids
+-       A bullet in laser form
+-       A pretty library to display the game over and score
+-       The score from shooting asteroids
+-       Game sounds from the arcade library
+-       Button use, on click enter, the game restart
+
+
+4.	What is your timeline? The answer to this question is mostly already decided. Just take a minute to review the rest of the course schedule together.
+
+Final Project Planning: 
+-	Create a plan for the game
+
+Alpha Release: 
+-       17 October
+-	First Milestone
+-	Develop the central classes for the program. 
+-	Based on how the program is working
+-	Use of primitive assets
+
+Beta Release:
+-       20 October 
+-	Second Milestone
+-	Continue working on the development of the game
+-	Select and program the remaining top priority classes for your program.
+-	Still use primitive assets
+
+Release Candidate:
+-       23 October 
+-	Third Milestone
+-	Game working but there may be some bugs 
+-	Select and program the remaining middle and low priority classes for your program
+-	Select and incorporate final image and sound assets for your program.
+
+Stable Release:
+-       26 October
+-	Fourth Milestone
+-	The game should look and behave mostly as originally envisioned.
+-	 Find and resolve any remaining problems and fix any bugs.
+
+Game Celebration:
+-	Game completely finished
+-	Time to celebrate and to relax 
+
 
 Nowami Moyo
 Tommy Sylver
