@@ -1,0 +1,8 @@
+
+				Asteroids Documentation
+
+
+*What program are we going to create? Use your brainstorming from the solo checkpoint to answer this question together.-A simplified version of the Asteroid game, A ship will be shooting asteroids and gets point for the asteroids destroyed.*What technologies will we use? The answer to this question is mostly already decided. Just take a minute to remind yourselves of the language, libraries and anything else you plan on using.-python-arcade Library-arcade Sounds(Comes with arcade package)-arcade sprites(Comes with arcade package)*What features will we include? The goal of asking this question is to identify what will and what won't be included. Use this simple feature planning guide to help you.-A ship in space shooting asteroids-Different colour and size asteroids-A bullet in laser form-A pretty library to display the game over and score-The score from shooting asteroids-Game sounds from the arcade library-Button use, on click enter, the game restarts*What is your timeline? The answer to this question is mostly already decided. Just take a minute to review the rest of the course schedule together.-Alpha Release = 17 October-Beta Release = 20 October -Release Candidate = 23 October -Stable Release = 26 October
+
+Nowami Moyo
+Tommy Sylver
