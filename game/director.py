@@ -14,7 +14,8 @@ def game_over(is_over):
         arcade.draw_rectangle_outline(center_x=start_x + 100, center_y=start_y, width=120, height=40, color=arcade.color.WHITE, border_width=2)
         arcade.draw_text(text, start_x=start_x + 50, start_y=start_y - 10, font_size=16, color=arcade.color.WHITE)
 
-
+# Section of this code is from a smpale of the same game from Sburton42 link provided below.
+#https://github.com/byui-burton/cs241p-course/blob/master/projects/asteroids/sample_code/asteroids.py
 class Director(arcade.Window):
     """
     This class handles all the game callbacks and interaction
