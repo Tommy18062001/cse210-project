@@ -19,7 +19,9 @@ click the "run" icon.
 
 Control the spaceship to destroy asteroids
 Tip: You can use the onscreen or keyboard arrows to control the spaceship.
+'''
 Game control - Space to shoot and arrows for general direction.
+'''
 
 ## Project Structure
 ---
