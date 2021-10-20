@@ -1,3 +1,5 @@
+"""A class for the director of the game."""
+
 import arcade
 from game import constants
 from game.ship import Ship
@@ -141,6 +143,7 @@ class Director(arcade.Window):
             self.ship.center.y = constants.SCREEN_HEIGHT
             
     def check_collisions(self):
+        """Do nothing"""
         pass
 
     def on_key_press(self, key: int, modifiers: int):

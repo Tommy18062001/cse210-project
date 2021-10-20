@@ -1,5 +1,17 @@
+""" Point class for moving objects. """
+
 class Point:
-    """ Point class for moving objects. """
+    """Represents distance from an origin (0, 0).
+
+    Stereotype:
+        Information Holder
+
+    Attributes:
+        _x (integer): The horizontal distance.
+        _y (Point): The vertical distance.
+    """
+    
     def __init__(self):
+        """The class constructor."""
         self.x = 0.0
         self.y = 0.0

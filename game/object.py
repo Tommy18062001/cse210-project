@@ -1,3 +1,5 @@
+"""A class for the object to fly"""
+
 import math
 from abc import abstractmethod
 from game import constants
@@ -20,6 +22,7 @@ class FlyingObj:
 
     @abstractmethod
     def __str__(self):
+        "Do nothing"
         pass
 
     def advance(self):

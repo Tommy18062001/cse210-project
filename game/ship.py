@@ -1,10 +1,12 @@
+"""A class for the ship data"""
+
 import arcade
 import math
 from game.object import FlyingObj
 from game import constants
 
 class Ship(FlyingObj):
-    # set the ship attributes and methods based off the flying object
+    """set the ship attributes and methods based off the flying object"""
     def __init__(self):
         super().__init__()
         self.center.x =  constants.SCREEN_WIDTH / 2
@@ -15,9 +17,12 @@ class Ship(FlyingObj):
         self.width = self.texture.width / 2
         self.height = self.texture.height / 2
 
+    
     def __str__(self):
+        """ Constructor. """
         return "Player Ship"
 
+  
     def draw(self):
         """ Draw ship. """
         arcade.draw_texture_rectangle(self.center.x, self.center.y,

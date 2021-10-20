@@ -1,3 +1,5 @@
+"""A class for the speed"""
+
 class Velocity:
     """ Holds velocity variables. """
     def __init__(self):

@@ -1,4 +1,4 @@
-# those are the constanst for the game
+"""those are the constanst for the game"""
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600

@@ -1,3 +1,5 @@
+"""A class for the sounds needed for the game."""
+
 import arcade
 from game import constants
 
@@ -10,5 +12,5 @@ class GameSound:
         self.volume = constants.VOLUME
 
     def play(self):
-        """ Play """
+        """ Play sound """
         self.sound.play(pan=self.pan, volume=self.volume)

@@ -1,3 +1,4 @@
+"""A class for bullet implementations"""
 import arcade
 import math
 from game.object import FlyingObj
@@ -18,8 +19,9 @@ class Bullet(FlyingObj):
         self.width = self.texture.width
         self.height = self.texture.height
         self.fire_bullet = GameSound(":resources:sounds/laser1.ogg", pan=-1.0)
-
+    
     def __str__(self):
+        """" The class constructor. """
         return "Player Bullet"
 
     def fire(self, angle, ship):
