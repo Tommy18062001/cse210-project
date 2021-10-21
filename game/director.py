@@ -33,9 +33,7 @@ class Director(arcade.Window):
         :param height: Screen height
         """
         super().__init__(width, height)
-        # if no background image is set
-        arcade.set_background_color(arcade.color.SMOKY_BLACK)
-
+        
         # creates ship
         self.ship = Ship()
         
