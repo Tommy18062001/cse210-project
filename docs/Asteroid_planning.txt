@@ -1,5 +1,5 @@
 
-				Asteroids Documentation
+				Asteroids Shooter Documentation
 
 Final Project Planning – Team 8
 
@@ -23,7 +23,7 @@ Main Scene:
 Game Scene:
 -	Score display
 -	Sounds effects
--	Check collisions
+-	Check explotions
 -	Check user inputs
 -	Outputs display
 
@@ -36,7 +36,6 @@ Win Scene:
 
 Additional Scene:
 -       A ship in space shooting asteroids
--       Different colour and size asteroids
 -       A bullet in laser form
 -       A pretty library to display the game over and score
 -       The score from shooting asteroids
@@ -82,4 +81,4 @@ Game Celebration:
 
 
 Nowami Moyo
-Tommy Sylver
+Tommy Sylver

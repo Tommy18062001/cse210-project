@@ -8,7 +8,7 @@ class Asteroid(Actor):
     """ The class that will handle all the different size of asteroid and their behavior """
     def __init__(self):
         super().__init__()
-        self.img = "images/asteroid.png"
+        self.img = "/Users/michael/Desktop/Team_final_project/cse210-project/images/asteroid.png"
         self.texture = arcade.load_texture(self.img)
         self.width = self.texture.width
         self.height = self.texture.height

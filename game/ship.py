@@ -9,7 +9,7 @@ class Ship(Actor):
     """set the ship attributes and methods based off the flying object"""
     def __init__(self):
         super().__init__()
-        self.img = "images/ship.png"
+        self.img = "/Users/michael/Desktop/Team_final_project/cse210-project/images/ship.png"
         self.texture = arcade.load_texture(self.img)
         self.width = self.texture.width / 2
         self.height = self.texture.height / 2

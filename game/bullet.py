@@ -19,7 +19,7 @@ class Bullet(Actor):
         self.angle = 90
         
         # the look of the bullet
-        self.img = "images/laser.png"
+        self.img = "/Users/michael/Desktop/Team_final_project/cse210-project/images/laser.png"
         self.texture = arcade.load_texture(self.img)
         self.width = self.texture.width
         self.height = self.texture.height
