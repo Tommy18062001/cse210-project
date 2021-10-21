@@ -1,10 +1,10 @@
 """A class for the director of the game."""
-
 import arcade
 from game import constants
 from game.ship import Ship
 from game.bullet import Bullet
 from game.score import Score
+from game.rocks import LargeRock
 
 
 def game_over(is_over):
@@ -42,13 +42,18 @@ class Director(arcade.Window):
         # holds keyboard keys
         self.held_keys = set()
         
-        # holds the bullet until they die
+        # list of needed actor in order to make the play
         self.bullets = list()
         self.alien_bullet = list()
+        self.asteroids = list()
 
-        # sets background image as background texture
-        self.background_image = "images/bg.jpg"
-        self.bg_texture = arcade.load_texture(self.background_image)
+        # initialize the rock
+        for i in range(3):
+            asteroid = LargeRock()
+            self.asteroids.append(asteroid)
+
+        # set the background color 
+        arcade.set_background_color(arcade.color.BUD_GREEN)
 
         self.score = Score()
 
@@ -61,11 +66,6 @@ class Director(arcade.Window):
         # clear the screen to begin drawing
         arcade.start_render()
 
-        # background image
-        arcade.draw_texture_rectangle(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2,
-                                      constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT,
-                                      self.bg_texture, 0, 255)
-
         # draws bullets if they are alive
         for b in self.bullets:
             if b.alive:
@@ -73,6 +73,10 @@ class Director(arcade.Window):
         for ab in self.alien_bullet:
             if ab.alive:
                 ab.draw()
+        
+        for asteroid in self.asteroids:
+            if asteroid.alive:
+                asteroid.draw()
                 
         # draws ship if it is alive
         if self.ship.alive:
@@ -91,31 +95,41 @@ class Director(arcade.Window):
         """
         self.check_keys()
         self.check_collisions()
-
-      
+        self.check_asteroid_free()
 
         if self.ship.alive:
             # ship can move if alive
-            self.ship.advance()
+            self.ship.move()
             self.ship.wrap(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)    
             
-        for b in self.bullets:
+        for each_bullet in self.bullets:
             # moves and counts down life of bullets
-            if b.alive:
-                b.advance()
-                b.wrap(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
-                b.life -= 1
-                if b.life <= 0:
-                    b.alive = False
+            if each_bullet.alive:
+                each_bullet.move()
+                each_bullet.wrap(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
+                each_bullet.life -= 1
+                if each_bullet.life <= 0:
+                    each_bullet.alive = False
 
         for ab in self.alien_bullet:
             # moves and counts down life of bullets
             if ab.alive:
-                ab.advance()
+                ab.move()
                 ab.wrap(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
                 ab.life -= 1
                 if ab.life <= 0:
                     ab.alive = False
+                    
+        for asteroid in self.asteroids:
+            # moves asteroids if alive
+            if asteroid.alive:
+                asteroid.move()
+                asteroid.wrap(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
+
+        # generates more asteroids if total number is less than 4
+        if len(self.asteroids) < 4:
+            add_asteroid = LargeRock()
+            self.asteroids.append(add_asteroid)
 
     def check_keys(self):
         """
@@ -123,28 +137,34 @@ class Director(arcade.Window):
         You will need to put your own method calls in here.
         """
         if arcade.key.LEFT in self.held_keys:
-            self.ship.angle  += self.ship.turn
+            self.ship.center.x -= 5
 
         if arcade.key.RIGHT in self.held_keys:
-            self.ship.angle -= self.ship.turn
-
-        if arcade.key.UP in self.held_keys:
-            self.ship.speed_control("pos")
-
-        if arcade.key.DOWN in self.held_keys:
-            self.ship.speed_control("neg")
-            
+            self.ship.center.x += 5
         
         # check that the ship doesn't go beyond the border
         if self.ship.center.x > constants.SCREEN_WIDTH:
             self.ship.center.x = constants.SCREEN_WIDTH
             
-        if self.ship.center.y > constants.SCREEN_HEIGHT:
-            self.ship.center.y = constants.SCREEN_HEIGHT
+        if self.ship.center.x < 0:
+            self.ship.center.x = 0
             
     def check_collisions(self):
-        """Do nothing"""
+        """Do nothing yet, to work during the release candidate phase"""
         pass
+    
+    def check_asteroid_free(self):
+        """Check all the asteroid that has passed beyond the border alive.
+        It should afect the score of the player
+        """
+        for asteroid in self.asteroids:
+            if asteroid.alive:
+                if asteroid.center.y < 0:
+                    self.score.score -= 10
+                    asteroid.alive = False
+                    
+                    # make sure to remove the asteroid from the list
+                    self.asteroids.remove(asteroid)
 
     def on_key_press(self, key: int, modifiers: int):
         """
@@ -159,12 +179,6 @@ class Director(arcade.Window):
 
             if key == arcade.key.RIGHT:
                 self.held_keys.add(arcade.key.RIGHT)
-
-            if key == arcade.key.UP:
-                self.held_keys.add(arcade.key.UP)
-
-            if key == arcade.key.DOWN:
-                self.held_keys.add(arcade.key.DOWN)
                 
             # added since pressing UP + LEFT together prevents SPACE from firing bullets
             if key == arcade.key.LSHIFT:

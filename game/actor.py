@@ -7,7 +7,7 @@ from game.point import Point
 from game.velocity import Velocity
 
 
-class FlyingObj:
+class Actor:
     """ Base class for any flying object. """
     def __init__(self):
         self.center = Point()
@@ -25,7 +25,7 @@ class FlyingObj:
         "Do nothing"
         pass
 
-    def advance(self):
+    def move(self):
         """ Moves the objects forward. """
         self.center.x += self.velocity.dx
         self.center.y += self.velocity.dy

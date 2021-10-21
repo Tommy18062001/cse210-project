@@ -1,5 +1,4 @@
 """The definition of the main function. It initializes a game object and starts the game"""
-
 import arcade
 from game.director import Director
 from game import constants
