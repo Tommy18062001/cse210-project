@@ -1,7 +1,5 @@
 """A class for the ship data"""
-
 import arcade
-import math
 from game.actor import Actor
 from game import constants
 
