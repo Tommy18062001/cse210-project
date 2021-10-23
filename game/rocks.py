@@ -19,6 +19,9 @@ class LargeRock(Asteroid):
         
         self.direction = random.randint(1, 150)
         
+        self.width = self.texture.width * 1.5
+        self.height = self.texture.height * 1.5
+        
         self.speed = constants.BIG_ROCK_SPEED
         
         self.velocity.dx = (math.cos(math.radians(self.direction)) * self.speed) * -1
@@ -58,8 +61,8 @@ class MediumRock(Asteroid):
         
         self.img = "images/asteroid.png"
         self.texture = arcade.load_texture(self.img)
-        self.width = self.texture.width * 1.5
-        self.height = self.texture.height * 1.5
+        self.width = self.texture.width * 1.2
+        self.height = self.texture.height * 1.2
         self.point_value = 2
 
     def __str__(self):

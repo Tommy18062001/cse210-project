@@ -40,4 +40,8 @@ class Asteroid(Actor):
         if self.center.x > screen_width or self.center.x < 0:
             self.velocity.dx *= -1
             self.velocity.dy *= 1
+            
+        if self.center.y > screen_height or self.center.y < 0:
+            self.velocity.dx *= 1
+            self.velocity.dy *= -1
         

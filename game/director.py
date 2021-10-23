@@ -5,6 +5,7 @@ from game.ship import Ship
 from game.bullet import Bullet
 from game.score import Score
 from game.rocks import LargeRock
+from game.sound import GameSound
 
 
 def game_over(is_over):
@@ -42,7 +43,6 @@ class Director(arcade.Window):
         
         # list of needed actor in order to make the play
         self.bullets = list()
-        self.alien_bullet = list()
         self.asteroids = list()
 
         # initialize the rock
@@ -52,6 +52,9 @@ class Director(arcade.Window):
 
         # set the background color 
         arcade.set_background_color(arcade.color.BUD_GREEN)
+        
+        # play a sound when the game is over
+        self.dead_player = GameSound(":resources:sounds/gameover4.wav", pan=-1.0)
 
         self.score = Score()
 
@@ -65,12 +68,9 @@ class Director(arcade.Window):
         arcade.start_render()
 
         # draws bullets if they are alive
-        for b in self.bullets:
-            if b.alive:
-                b.draw()
-        for ab in self.alien_bullet:
-            if ab.alive:
-                ab.draw()
+        for bullet in self.bullets:
+            if bullet.alive:
+                bullet.draw()
         
         for asteroid in self.asteroids:
             if asteroid.alive:
@@ -108,26 +108,22 @@ class Director(arcade.Window):
                 each_bullet.life -= 1
                 if each_bullet.life <= 0:
                     each_bullet.alive = False
-
-        for ab in self.alien_bullet:
-            # moves and counts down life of bullets
-            if ab.alive:
-                ab.move()
-                ab.wrap(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
-                ab.life -= 1
-                if ab.life <= 0:
-                    ab.alive = False
-                    
+          
+        # generates more asteroids if total number is less than 4
+        if len(self.asteroids) < 4:
+            add_asteroid = LargeRock()
+            self.asteroids.append(add_asteroid)
+                      
         for asteroid in self.asteroids:
             # moves asteroids if alive
             if asteroid.alive:
                 asteroid.move()
                 asteroid.wrap(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
+                
+            else:
+                self.asteroids.remove(asteroid)
 
-        # generates more asteroids if total number is less than 4
-        if len(self.asteroids) < 4:
-            add_asteroid = LargeRock()
-            self.asteroids.append(add_asteroid)
+        
 
     def check_keys(self):
         """
@@ -148,8 +144,28 @@ class Director(arcade.Window):
             self.ship.center.x = 0
             
     def check_collisions(self):
-        """Do nothing yet, to work during the release candidate phase"""
-        pass
+
+        for asteroid in self.asteroids:
+
+            # this will handle the collisions between the bullet and the asteroids
+            for bullet in self.bullets:
+                if bullet.alive and asteroid.alive:
+                    bullet_collision = asteroid.radius + bullet.radius
+                    
+                    # check if the 
+                    if abs(bullet.center.x - asteroid.center.x) < bullet_collision and abs(bullet.center.y - asteroid.center.y) < bullet_collision:
+                        bullet.alive = False
+                        asteroid.hit(self.asteroids)
+                        self.score.update_score(asteroid.point_value)
+
+            # this will handle the collisions between the ship and the asteroids
+            if self.ship.alive and asteroid.alive:
+                ship_collision = asteroid.radius + self.ship.radius
+                if abs(self.ship.center.x - asteroid.center.x) < ship_collision and abs(self.ship.center.y - asteroid.center.y) < ship_collision:
+                    self.ship.alive = False
+                    
+                    # play sound when player dies
+                    self.dead_player.play()
     
     def check_asteroid_free(self):
         """Check all the asteroid that has passed beyond the border alive.
