@@ -1,3 +1,5 @@
+""" Bullet class for firing the laser. """
+
 import arcade
 from game import constants
 from game.actor import Actor
@@ -26,7 +28,8 @@ class Bullet(Actor):
         # self.fire_bullet = GameSound(":resources:sounds/laser1.ogg", pan=-1.0)
 
     def __str__(self):
-        return "Player Bullet"
+        """Player Bullet"""
+        return #Player Bullet
 
     def fire(self, angle, ship):
         """ Controls the speed of the bullet. """

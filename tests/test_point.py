@@ -1,3 +1,5 @@
+"""Test code for the Point class"""
+
 from game.point import Point
 import pytest
 from game import constants

@@ -1,3 +1,5 @@
+"""Test code for the Score class"""
+
 from game.score import Score
 import pytest
 

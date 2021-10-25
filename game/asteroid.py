@@ -1,3 +1,5 @@
+""" Asteroid class for creation and splitting of asteroids"""
+
 import arcade
 from game.actor import Actor
 from game.sound import GameSound
@@ -27,6 +29,7 @@ class Asteroid(Actor):
            
     @abstractmethod
     def split(self, asteroid_list):
+        """Splits asteroid"""
         pass
 
     def hit(self, asteroid_list):

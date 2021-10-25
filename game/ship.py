@@ -1,4 +1,5 @@
 """A class for the ship data"""
+
 import arcade
 from game.actor import Actor
 from game import constants
@@ -27,10 +28,11 @@ class Ship(Actor):
                                       self.texture, self.angle, constants.ALPHA)
             
     def move(self):
+        """motion of the flying object"""
         self.center.x += self.velocity.dx
 
     def speed_control(self, thrust):
-        # Speed limit for x
+        """Speed limit for x"""
         vx = self.velocity.dx
         if vx > 5:
             self.velocity.dx = 5

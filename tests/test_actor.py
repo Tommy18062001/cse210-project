@@ -1,3 +1,5 @@
+"""Test code for the Actor class"""
+
 from game.actor import Actor
 import pytest
 from game import constants

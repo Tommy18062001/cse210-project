@@ -1,3 +1,5 @@
+"""Test code for the Director class"""
+
 from director import *
 import pytest
 

@@ -17,7 +17,9 @@ class Point:
         self.y = 0.0
         
     def get_x(self):
+        """_x (integer): The horizontal distance."""
         return self.x
     
     def get_y(self):
+        """_y (Point): The vertical distance."""
         return self.y

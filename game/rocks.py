@@ -1,3 +1,7 @@
+"""
+    A class for displaying the large rock during the gameplay
+"""
+
 import arcade
 import random
 import math
@@ -32,7 +36,8 @@ class LargeRock(Asteroid):
         self.point_value = 1
 
     def __str__(self):
-        return "Large Asteroid"
+        "return Large Asteroid"
+        return #Large Asteroid
 
     def split(self, asteroid_list):
         """ Splits when hit. """
@@ -66,7 +71,8 @@ class MediumRock(Asteroid):
         self.point_value = 2
 
     def __str__(self):
-        return "Medium Asteroid"
+        """Medium Asteroid"""
+        return #Medium Asteroid
 
     def split(self, asteroid_list):
         """ Splits when hit. """
@@ -81,6 +87,7 @@ class MediumRock(Asteroid):
 class SmallRock(Asteroid):
     """ Sets variables for small asteroids. """
     def __init__(self):
+        """super_init"""
         super().__init__()
         
         self.velocity.dx = random.uniform(-(constants.BIG_ROCK_SPEED + 1), (constants.BIG_ROCK_SPEED + 1))
@@ -96,7 +103,8 @@ class SmallRock(Asteroid):
         self.point_value = 3
 
     def __str__(self):
-        return "Small Asteroid"
+        """Small Asteroid"""
+        return #Small Asteroid
 
     def split(self, asteroid_list):
         """ No splits. """

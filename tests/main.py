@@ -1,3 +1,5 @@
+"""Initiate test directory"""
+
 import pytest
 from pathlib import Path
 
@@ -8,3 +10,4 @@ from pathlib import Path
 pytest.main(["-v", "--tb=line", "-rN", "test_point.py"])
 pytest.main(["-v", "--tb=line", "-rN", "test_actor.py"])
 pytest.main(["-v", "--tb=line", "-rN", "test_score.py"])
+pytest.main(["-v", "--tb=line", "-rN", "test_director.py"])

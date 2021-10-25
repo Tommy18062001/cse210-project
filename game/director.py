@@ -1,4 +1,5 @@
 """A class for the director of the game."""
+
 import arcade
 from game import constants
 from game.ship import Ship
@@ -144,6 +145,7 @@ class Director(arcade.Window):
             self.ship.center.x = 0
             
     def check_collisions(self):
+        """"Check all the asteroid"""
 
         for asteroid in self.asteroids:
 
