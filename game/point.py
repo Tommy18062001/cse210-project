@@ -15,3 +15,9 @@ class Point:
         """The class constructor."""
         self.x = 0.0
         self.y = 0.0
+        
+    def get_x(self):
+        return self.x
+    
+    def get_y(self):
+        return self.y
