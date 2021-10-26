@@ -104,10 +104,12 @@ class Director(arcade.Window):
                 if each_bullet.life <= 0:
                     each_bullet.alive = False
           
-        # generates more asteroids if total number is less than 4
-        if len(self.asteroids) < 4:
-            add_asteroid = LargeRock()
-            self.asteroids.append(add_asteroid)
+        
+        # generates more asteroids if total number is less than 4 and also, the game is not over yet.
+        if not self.is_over:
+            if len(self.asteroids) < 4:
+                add_asteroid = LargeRock()
+                self.asteroids.append(add_asteroid)
                       
         for asteroid in self.asteroids:
             # moves asteroids if alive
@@ -207,11 +209,15 @@ class Director(arcade.Window):
         if key == arcade.key.ENTER:
             self.held_keys.add(arcade.key.ENTER)
             self.ship = Ship()
-            # -100 points for resetting ship
-            self.score.score = 0
+            
+            # clear the screen
+            for asteroid in self.asteroids:
+                asteroid.alive = False
             
             # restart the game
+            self.score.score = 0
             self.is_over = False
+            
 
     def on_key_release(self, key: int, modifiers: int):
         """
@@ -231,10 +237,8 @@ class Director(arcade.Window):
             arcade.draw_text(text, start_x=start_x +  35, start_y=start_y - 10, font_size=16, color=arcade.color.WHITE)
 
             arcade.draw_rectangle_outline(center_x=start_x + 100, center_y=start_y - 40, width=160, height=40, color=arcade.color.WHITE, border_width=2)
-            arcade.draw_text(score, start_x=start_x +  35, start_y=start_y - 50, font_size=16, color=arcade.color.WHITE)
+            arcade.draw_text(score, start_x=start_x +  35, start_y=start_y - 50, font_size=16, color=arcade.color.WHITE)  
 
-        return is_over
 
-        
         
         

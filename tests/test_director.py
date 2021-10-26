@@ -1,6 +1,6 @@
 """Test code for the Director class"""
 
-from director import *
+from game.director import *
 import pytest
 
 
