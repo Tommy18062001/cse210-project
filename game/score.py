@@ -21,3 +21,7 @@ class Score:
         start_x = 20
         start_y = constants.SCREEN_HEIGHT - 30
         arcade.draw_text(score_text, start_x=start_x, start_y=start_y, font_size=16, color=arcade.color.WHITE)
+        
+    def get_score(self):
+        """get the score"""
+        return self.score

@@ -1,22 +1,12 @@
 """A class for the director of the game."""
-
 import arcade
 from game import constants
+from game.asteroid import Asteroid
 from game.ship import Ship
 from game.bullet import Bullet
 from game.score import Score
 from game.rocks import LargeRock
 from game.sound import GameSound
-
-
-def game_over(is_over):
-    """ Displays Game Over message when player is killed. """
-    if is_over:
-        text = "GAME OVER"
-        start_x = constants.SCREEN_HEIGHT / 2
-        start_y = constants.SCREEN_HEIGHT / 2
-        arcade.draw_rectangle_outline(center_x=start_x + 100, center_y=start_y, width=120, height=40, color=arcade.color.WHITE, border_width=2)
-        arcade.draw_text(text, start_x=start_x + 50, start_y=start_y - 10, font_size=16, color=arcade.color.WHITE)
 
 # Section of this code is from a smpale of the same game from Sburton42 link provided below.
 #https://github.com/byui-burton/cs241p-course/blob/master/projects/asteroids/sample_code/asteroids.py
@@ -35,6 +25,9 @@ class Director(arcade.Window):
         :param height: Screen height
         """
         super().__init__(width, height)
+        
+        # check if the game is over
+        self.is_over = False
         
         # creates ship
         self.ship = Ship()
@@ -82,7 +75,8 @@ class Director(arcade.Window):
             self.ship.draw()
         else:
             # calls game_over - clears if Enter is pressed
-            game_over(True)
+            self.is_over = True
+            self.game_over(self.is_over)
             
         # draw score
         self.score.display()
@@ -145,7 +139,6 @@ class Director(arcade.Window):
             self.ship.center.x = 0
             
     def check_collisions(self):
-        """"Check all the asteroid"""
 
         for asteroid in self.asteroids:
 
@@ -176,11 +169,14 @@ class Director(arcade.Window):
         for asteroid in self.asteroids:
             if asteroid.alive:
                 if asteroid.center.y < 0:
-                    self.score.score -= 10
-                    asteroid.alive = False
-                    
-                    # make sure to remove the asteroid from the list
-                    self.asteroids.remove(asteroid)
+                    if self.is_over:
+                        pass
+                    else:
+                        self.score.score -= 10
+                        asteroid.alive = False
+                        
+                        # make sure to remove the asteroid from the list
+                        self.asteroids.remove(asteroid)
 
     def on_key_press(self, key: int, modifiers: int):
         """
@@ -212,7 +208,10 @@ class Director(arcade.Window):
             self.held_keys.add(arcade.key.ENTER)
             self.ship = Ship()
             # -100 points for resetting ship
-            self.score.score -= 100
+            self.score.score = 0
+            
+            # restart the game
+            self.is_over = False
 
     def on_key_release(self, key: int, modifiers: int):
         """
@@ -220,6 +219,21 @@ class Director(arcade.Window):
         """
         if key in self.held_keys:
             self.held_keys.remove(key)
+            
+    def game_over(self, is_over):
+        """ Displays Game Over message when player is killed. """
+        if is_over:
+            text = "GAME OVER"
+            score = f"SCORE: {self.score.score}"
+            start_x = constants.SCREEN_HEIGHT / 2
+            start_y = constants.SCREEN_HEIGHT / 2
+            arcade.draw_rectangle_outline(center_x=start_x + 100, center_y=start_y, width=160, height=40, color=arcade.color.WHITE, border_width=2)
+            arcade.draw_text(text, start_x=start_x +  35, start_y=start_y - 10, font_size=16, color=arcade.color.WHITE)
+
+            arcade.draw_rectangle_outline(center_x=start_x + 100, center_y=start_y - 40, width=160, height=40, color=arcade.color.WHITE, border_width=2)
+            arcade.draw_text(score, start_x=start_x +  35, start_y=start_y - 50, font_size=16, color=arcade.color.WHITE)
+
+        return is_over
 
         
         
